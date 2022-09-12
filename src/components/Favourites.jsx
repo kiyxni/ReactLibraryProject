@@ -17,33 +17,32 @@ const Favourites = () => {
 
   return (
     <div className="favorites">
-        {favourites.length > 0 ? favourites.map((book) => (
-            <div key={book.id} className="book">
-              <div>
-                <h4>{book.title}</h4>
-              </div>
-              <div>
-                <img
-                  src={book.image_url}
-                  alt="#"
-                  onClick={() => navigate(`/books/${book.id}`)}
-                />
-              </div>
-              <div>
-                {favouritesChecker(book.id) ? (
-                  <button onClick={() => removeFromFavourites(book.id)}>
-                    Remove from Favourites
-                  </button>
-                ) : (
-                  <button onClick={() => addToFavourites(book)}>
-                    Add to Favourites
-                  </button>
-                )}
-              </div>
+      {favourites.length > 0 ? (
+        favourites.map((book) => (
+          <div key={book.id} className="book">
+            <div>
+              <h4>{book.title}</h4>
             </div>
-          )):<h1>You don't have any favourite books yet</h1>}
+            <div>
+              <img src={book.image_url} alt="#" />
+            </div>
+            <div>
+              {favouritesChecker(book.id) ? (
+                <button onClick={() => removeFromFavourites(book.id)}>
+                  Remove from Favourites
+                </button>
+              ) : (
+                <button onClick={() => addToFavourites(book)}>
+                  Add to Favourites
+                </button>
+              )}
+            </div>
+          </div>
+        ))
+      ) : (
+        <h1>You don't have any favourite books yet!</h1>
+      )}
     </div>
-  )
-}
-
+  );
+};
 export default Favourites;
